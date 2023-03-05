@@ -56,11 +56,52 @@
     align-items: center;
     display: flex;
     justify-content: center;
-    background: linear-gradient(rgb(0, 0, 88), black);
+    background: linear-gradient(rgb(0, 0, 88), rgb(85, 0, 189));
     border: 2px solid grey;
     padding: 10px;
     text-align: center;
-    
+    border-radius: 15px;
+    font-size: 20px;
+    font-weight: 300;
+    flex-wrap: wrap;
+    cursor: pointer
+}
+
+.answer:hover,
+.answer.active {
+    background: mediumblue;
+}
+
+.answer.correct {
+    animation: correct 3s ease forwards;
+}
+
+@keyframes correct {
+    0%, 22%, 42% {
+        background: mediumblue;
+    }
+    20%, 40%, 60% {
+        background: linear-gradient(rgb(0, 0, 88), rgb(85, 0, 189));
+    }
+    62%, 100% {
+        background: green;
+    }
+}
+
+.answer.wrong {
+    animation: wrong 3s ease forwards;
+}
+
+@keyframes wrong {
+    0%, 22%, 42% {
+        background: mediumblue;
+    }
+    20%, 40%, 60% {
+        background: linear-gradient(rgb(0, 0, 88), rgb(85, 0, 189));
+    }
+    62%, 100% {
+        background: crimson;
+    }
 }
 
 .bottom {

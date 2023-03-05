@@ -1,11 +1,36 @@
-export default function Quiz() {
+import { useEffect, useState } from "react";
+
+
+export default function Quiz(
+    {
+    data,
+    setStop,
+    questionNumber,
+    setQuestionNumber,
+    }) {
+
+    const [question, setQuestion] = useState(null);
+    const [selectedAnswer, setSelectedAnswer] = useState(null);
+    const [className, setClassName] = useState("answer");
+
+    useEffect(() => {
+        setQuestion(data[questionNumber - 1])
+    }, [data, questionNumber])
+
+    const handleClick = (a) => {
+        setSelectedAnswer(a)
+        setClassName("answer active")
+        setTimeout(() => {
+            setClassName(a.correct ? "answer correct" : "answer wrong")
+        }, 3000)
+    }
+
   return (
     <div className="quiz">
-        <div className="question">What's the best YouTube channel?</div>
-        <div className="answer">LamaDev</div>
-        <div className="answer">LamaDev</div>
-        <div className="answer">LamaDev</div>
-        <div className="answer">LamaDev</div>
+        <div className="question">{question?.question}</div>
+        {question?.answers.map(a => (
+        <div className={selectedAnswer === a ? className : "answer"} onClick={() => handleClick(a)}>{a.text}</div>
+        ))}
     </div>
   )
 }
